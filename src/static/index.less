@@ -1,0 +1,70 @@
+@import "reset.css";
+
+@tile_grid_width: 200px;
+@tile_grid_height: 175px;
+@tile_border_size_h: 2px;
+@tile_border_size_v: 2px;
+@tile_margin_h: 25px;
+@tile_margin_v: 10px;
+
+.tile {
+    border-style: solid;
+    border-width: @tile_border_size_v @tile_border_size_h;
+    float: left;
+    margin: @tile_margin_v @tile_margin_h;
+}
+
+.tile_width(@nr) {
+  @tile_width: (@nr*@tile_grid_width - 2*@tile_border_size_h - 2*@tile_margin_h);
+}
+.tile_1w {.tile_width(1); width: @tile_width;}
+.tile_2w {.tile_width(2); width: @tile_width;}
+.tile_3w {.tile_width(3); width: @tile_width;}
+.tile_4w {.tile_width(4); width: @tile_width;}
+.tile_4w {.tile_width(4); width: @tile_width;}
+.tile_5w {.tile_width(5); width: @tile_width;}
+.tile_6w {.tile_width(6); width: @tile_width;}
+.tile_7w {.tile_width(7); width: @tile_width;}
+.tile_8w {.tile_width(8); width: @tile_width;}
+
+.tile_height(@nr) {
+  @tile_height: (@nr*@tile_grid_height - 2*@tile_border_size_v - 2*@tile_margin_v);
+}
+.tile_1h {.tile_height(1); height: @tile_height;}
+.tile_2h {.tile_height(2); height: @tile_height;}
+.tile_3h {.tile_height(3); height: @tile_height;}
+.tile_4h {.tile_height(4); height: @tile_height;}
+.tile_5h {.tile_height(5); height: @tile_height;}
+.tile_6h {.tile_height(6); height: @tile_height;}
+.tile_7h {.tile_height(7); height: @tile_height;}
+.tile_8h {.tile_height(8); height: @tile_height;}
+
+/* THEMING */
+.tile_colors(@angle, @saturation) {
+    border-color: hsv(@angle, 1, @saturation);
+    background-color: hsv(@angle, 0.5, @saturation);
+    color: black;
+}
+
+.color-black {
+    .tile_colors(0, 0);
+    color: white;
+}
+.color-red {
+    .tile_colors(0, 1);
+}
+.color-orange {
+    .tile_colors(40, 1);
+}
+.color-yellow {
+    .tile_colors(60, 1);
+}
+.color-green {
+    .tile_colors(90, 1);
+}
+.color-blue {
+    .tile_colors(220, 1);
+}
+.color-purple {
+    .tile_colors(290, 1);
+}

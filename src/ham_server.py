@@ -1,24 +1,32 @@
 from flask import Flask, render_template
 from collections import namedtuple
 
-Tile = namedtuple('Tile', 'type title width height properties')
+Tile = namedtuple('Tile', 'type title width height color properties')
+Tile.__new__.__defaults__ = (None, '', 1, 1, 'black', dict())
+#colors in enum
 
 app = Flask(__name__)
 app.config.APP_STRUCTURE = \
-    Tile(type='menu',
-        title="Hoofdmenu",
-        width=0,
-        height=0,
-        properties=dict(
-            tiles=[
-                Tile(type='menu', title='verlichting', width=1, height=1, properties=dict()),
-                Tile(type='menu', title='verwarming', width=1, height=1, properties=dict()),
-                Tile(type='switch', title='light above dining table', width=1, height=1, properties=dict()),
-            ])
-        )
+    Tile(title="Hoofdmenu",
+         properties=dict(
+             tiles=[
+                 Tile(type='menu', title='verlichting'),
+                 Tile(type='menu', title='verwarming'),
+                 Tile(type='switch', title='black', ),
+                 Tile(type='switch', title='red', color="red"),
+                 Tile(type='switch', title='orange', color="orange"),
+                 Tile(type='switch', title='yellow', color="yellow"),
+                 Tile(type='switch', title='green', color="green"),
+                 Tile(type='switch', title='blue', color="blue"),
+                 Tile(type='switch', title='purple', color="purple"),
+                 Tile(type='switch', title='light above dining table', width=2, color="green"),
+                 Tile(type='switch', title='light above coffee table', height=2, color="blue"),
+                 Tile(type='debugger', title='Debugger', height=2, width=5, color="blue"),
+             ])
+         )
 
 def render_tile(tile):
-    return render_template("tiles/{0}.html".format(tile.type))
+    return render_template("tiles/{0}.html".format(tile.type), tile=tile)
 
 @app.route('/')
 def index():

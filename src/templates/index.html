@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- load index.css -->
+    <!-- load index.js -->
+    <!-- load all /type/.css -->
+    <!-- load all /type/.js -->
+</head>
+<body>
+    <!-- generate crum trail -->
+
+    {% for tile in tiles %}
+    <div class="tile tile_{{ tile.width }}w tile_{{ tile.height }} tile.typeh">{{ render_tile(tile) | safe }}</div>
+    {% endfor %}
+</body>
+</html>

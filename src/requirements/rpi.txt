@@ -1,0 +1,2 @@
+# this requirements file is used in a raspberry pi server environment
+flask==0.11.1

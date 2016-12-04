@@ -1,0 +1,2 @@
+# this requirements file is used in a development environment
+flask==0.11.1

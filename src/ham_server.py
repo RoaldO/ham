@@ -6,6 +6,9 @@ Tile.__new__.__defaults__ = (None, '', 1, 1, 'black', dict())
 #colors in enum
 
 app = Flask(__name__)
+app.config.MQTT_SERVER = '127.0.0.1' # remote address
+app.config.MQTT_PORT = '1884'
+app.config.MQTT_CLIENTID = 'webclient'
 app.config.APP_STRUCTURE = \
     Tile(title="Hoofdmenu",
          properties=dict(
@@ -33,7 +36,10 @@ def index():
     tiles = app.config.APP_STRUCTURE.properties['tiles']
     types = [tile.type for tile in tiles]
     unique_types = set(types)
-    return render_template('index.html', render_tile=render_tile,
+    return render_template('index.html', MQTT_SERVER=app.config.MQTT_SERVER,
+                                         MQTT_PORT=app.config.MQTT_PORT,
+                                         MQTT_CLIENTID=app.config.MQTT_CLIENTID,
+                                         render_tile=render_tile,
                                          title=app.config.APP_STRUCTURE.title,
                                          tiles=tiles,
                                          types=unique_types,

@@ -16,6 +16,14 @@
     {{ render_tile(tile) | safe }}
     {% endfor %}
 
+
+    <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='mqttws31-1.0.1.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        var MQTT_SERVER='{{ MQTT_SERVER }}';
+        var MQTT_PORT='{{ MQTT_PORT}}';
+        var MQTT_CLIENTID='{{ MQTT_CLIENTID }}';
+    </script>
     <script src="{{ url_for('static', filename='index.js') }}" type="text/javascript"></script>
     {% for type in types %}
     <script src="{{ url_for('static', filename='tiles/' + type + '.js') }}" type="text/javascript"></script>

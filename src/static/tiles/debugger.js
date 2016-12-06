@@ -1,12 +1,12 @@
-(function(){
-    function on_mqtt_connected() {
-        //...
-    }
+console.debug('debugger tile loading');
+(function ( $ ) {
 
-    function on_message_arrived() {
-        //...
-    }
+    var shade = "#556b2f";
 
-    subscribe_mqtt_connected(on_mqtt_connected);
-    subscribe_mqtt_message_arrived(on_message_arrived)
-})();
+    $.fn.debuggerTile = function() {
+        this.css( "color", shade );
+        return this;
+    };
+
+}( jQuery ));
+console.debug('debugger tile loaded');

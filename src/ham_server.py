@@ -28,8 +28,18 @@ app.config.APP_STRUCTURE = \
              ])
          )
 
+_id = 0
+def reset_id():
+    global _id
+    _id = 0
+
+def generate_id(type):
+    global _id
+    _id += 1
+    return "{0}_{1}".format(type, _id)
+
 def render_tile(tile):
-    return render_template("tiles/{0}.html".format(tile.type), tile=tile)
+    return render_template("tiles/{0}.html".format(tile.type), tile=tile, generate_id=generate_id)
 
 @app.route('/')
 def index():
@@ -40,6 +50,7 @@ def index():
                                          MQTT_PORT=app.config.MQTT_PORT,
                                          MQTT_CLIENTID=app.config.MQTT_CLIENTID,
                                          render_tile=render_tile,
+                                         reset_id=reset_id,
                                          title=app.config.APP_STRUCTURE.title,
                                          tiles=tiles,
                                          types=unique_types,

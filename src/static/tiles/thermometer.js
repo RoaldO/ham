@@ -1,4 +1,7 @@
 (function ( $ ) {
+    function round(f, d) {
+    }
+
     $.fn.thermometerTile = function(params) {
         var tileNode = this;
         var properties = JSON.parse($(this).find('div.data-properties').html());
@@ -7,7 +10,8 @@
         var channel = properties.device + 'temperature/temperature';
 
         params.mqtt_client.onMessageArrived = function(message) {
-            output.text(message.payloadString.slice(0, -1));
+            var t = Number(message.payloadString).toFixed(1);
+            output.text(t);
             var temp = Number(message.payloadString)
             bulb.removeClass('fa-thermometer-0')
             bulb.removeClass('fa-thermometer-1')

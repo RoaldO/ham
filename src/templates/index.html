@@ -14,7 +14,7 @@
 <body>
     <!-- TODO: generate crum trail here -->
 
-    {{ reset_id() }}
+    {{ reset_id() or ""   }}
     {% for tile in tiles %}
     {{ render_tile(tile) | safe }}
     {% endfor %}

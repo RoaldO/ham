@@ -10,8 +10,10 @@ def set_config(config):
                  tiles=[
                      Tile(type='menu', title='sub menu'),
                      Tile(type='switch', title='red', color="red"),
-                     Tile(type='thermometer', title='orange', color="orange",
+                     Tile(type='thermometer', title='living', color="orange",
                           properties=dict(device='devices/living-temperature/')),
+                     Tile(type='thermometer', title='desired', color="orange",
+                          properties=dict(device='devices/desired-temperature/')),
                      Tile(type='weather', title='yellow', color="yellow"),
                      Tile(type='switch', title='blue', width=2, color="blue"),
                      Tile(type='switch', title='purple', color="purple"),

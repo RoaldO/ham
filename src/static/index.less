@@ -1,17 +1,26 @@
 @import "reset.css";
 
-@tile_grid_width: 200px;
-@tile_grid_height: 175px;
+@tile_grid_width: 180px;
+@tile_grid_height: 180px;
 @tile_border_size_h: 2px;
 @tile_border_size_v: 2px;
-@tile_margin_h: 25px;
+@tile_margin_h: 10px;
 @tile_margin_v: 10px;
+
+*, DIV, SPAN {
+    font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+}
 
 .tile {
     border-style: solid;
     border-width: @tile_border_size_v @tile_border_size_h;
     float: left;
     margin: @tile_margin_v @tile_margin_h;
+
+    div.data-properties {
+        display: none;
+    }
+    overflow: hidden;
 }
 
 .tile_width(@nr) {

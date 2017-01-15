@@ -1,0 +1,20 @@
+.rotate(@deg: 90) {
+    /* Safari */
+    -webkit-transform: rotate(@deg * 1deg);
+    /* Firefox */
+    -moz-transform: rotate(@deg * 1deg);
+    /* IE10+ */
+    transform: rotate(@deg * 1deg);
+    /* Opera */
+    -o-transform: rotate(@deg * 1deg);
+    /* Internet Explorer */
+    @IEdeg: round(@deg / 90, 0);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@IEdeg);
+}
+
+.translate(@x, @y:0) {
+	-webkit-transform:       translate(@x, @y);
+	-moz-transform: 	 translate(@x, @y);
+	-ms-transform: 		 translate(@x, @y);
+	-o-transform: 		 translate(@x, @y);
+}

@@ -1,0 +1,13 @@
+{% extends "_base_tile.html" %}
+
+{% block content %}
+<button class="reconnect">(Re)Connect</button>
+<button class="disconnect">Disconnect</button>
+<h2>Message:</h2>
+<label>Topic<input name="topic"></label><br>
+<label>Message<input name="message"></label><br>
+<label>Retain<input name="retain" type="checkbox"></label><br>
+<label>QoS<input name="qos"></label><br>
+<button class="send">Send</button>
+
+{% endblock %}

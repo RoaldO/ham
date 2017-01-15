@@ -1,24 +1,8 @@
 {% extends "_base_tile.html" %}
 
 {% block content %}
-<p>Must have</p>
-<ul>
-    <li>a connect button</li>
-    <li>subscribe to # and show all incoming messages</li>
-    <LI>a disconnect button</LI>
-    <li>a reconnect button</li>
-    <li>a form to send test messages to specific topics</li>
-</ul>
-
-<button>(Re)Connect</button>
-<button>Disconnect</button>
+<button class="reconnect">(Re)Connect</button>
+<button class="disconnect">Disconnect</button>
 <h2>Messages</h2>
-<dl>
-    <dt>Topic</dt>
-    <dd>Message</dd>
-    <dt>Topic</dt>
-    <dd>Message</dd>
-    <dt>Topic</dt>
-    <dd>Message</dd>
-</dl>
-{%endblock%}
+<table><tbody></tbody></table>
+{% endblock %}

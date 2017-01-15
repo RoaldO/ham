@@ -1,11 +1,18 @@
 {% set id = generate_id(tile.type) %}
 <div id='{{ id }}' class="tile tile_{{ tile.width }}w tile_{{ tile.height }}h {{ tile.type }} color-{{ tile.color }}" data-type="{{ tile.type }}">
+    <div class="data-properties">
+        {{ to_json(tile.properties) }}
+    </div>
+
+
+
     {% block content %}
     {% endblock %}
 </div>
 <script>
     $(document).ready(function(){
-        var mqtt_client = new Paho.MQTT.Client(MQTT_SERVER, Number(MQTT_PORT), MQTT_CLIENTID);
-        $('#{{ id }}').{{ tile.type }}Tile({mqtt_client:mqtt_client});
+        var clientId = MQTT_CLIENTID + '_{{ tile.type }}_{{ id }}';
+        var mqtt_client = new Paho.MQTT.Client(MQTT_SERVER, Number(MQTT_PORT), clientId);
+        $('#{{ id }}').{{ tile.type }}Tile({mqtt_client:mqtt_client, config:JSON.parse('{{ to_json(tile.properties) | safe }}')});
     });
 </script>

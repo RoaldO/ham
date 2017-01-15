@@ -1,46 +1,37 @@
 from flask import Flask, render_template
 from collections import namedtuple
-
-Tile = namedtuple('Tile', 'type title width height color properties')
-Tile.__new__.__defaults__ = (None, '', 1, 1, 'black', dict())
-#colors in enum
+import json
 
 app = Flask(__name__)
-app.config.MQTT_SERVER = '127.0.0.1' # remote address
-app.config.MQTT_PORT = '1884'
-app.config.MQTT_CLIENTID = 'webclient'
-app.config.APP_STRUCTURE = \
-    Tile(title="Hoofdmenu",
-         properties=dict(
-             tiles=[
-                 Tile(type='menu', title='verlichting'),
-                 Tile(type='menu', title='verwarming'),
-                 Tile(type='switch', title='black', ),
-                 Tile(type='switch', title='red', color="red"),
-                 Tile(type='switch', title='orange', color="orange"),
-                 Tile(type='switch', title='yellow', color="yellow"),
-                 Tile(type='switch', title='green', color="green"),
-                 Tile(type='switch', title='blue', color="blue"),
-                 Tile(type='switch', title='purple', color="purple"),
-                 Tile(type='switch', title='light above dining table', width=2, color="green"),
-                 Tile(type='switch', title='light above coffee table', height=2, color="blue"),
-                 Tile(type='debugger', title='Debugger', height=2, width=5, color="blue"),
-             ])
-         )
 
+# config
+import default_config
+default_config.set_config(app.config)
+try:
+    import site_config
+    site_config.set_config(app.config)
+except:
+    print('Warning: No `site_config.py` found. Create one by copying `default_config.py` and customizing it.' )
+
+# initialisation of config
 _id = 0
 def reset_id():
     global _id
     _id = 0
 
+# render helpers
 def generate_id(type):
     global _id
     _id += 1
     return "{0}_{1}".format(type, _id)
 
-def render_tile(tile):
-    return render_template("tiles/{0}.html".format(tile.type), tile=tile, generate_id=generate_id)
+def to_json(obj):
+    return json.dumps(obj)
 
+def render_tile(tile):
+    return render_template("tiles/{0}.html".format(tile.type), tile=tile, generate_id=generate_id, to_json=to_json)
+
+# url mapping
 @app.route('/')
 def index():
     tiles = app.config.APP_STRUCTURE.properties['tiles']
@@ -55,7 +46,6 @@ def index():
                                          tiles=tiles,
                                          types=unique_types,
                            )
-
 
 if __name__ == '__main__':
     app.run(debug=True)

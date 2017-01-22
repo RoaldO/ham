@@ -1,7 +1,4 @@
 (function ( $ ) {
-    function round(f, d) {
-    }
-
     $.fn.thermometerTile = function(params) {
         var tileNode = this;
         var properties = JSON.parse($(this).find('div.data-properties').html());

@@ -15,6 +15,8 @@ def set_config(config):
                      Tile(type='thermometer', title='desired', color="orange",
                           properties=dict(device='devices/desired-temperature/')),
                      Tile(type='weather', title='yellow', color="yellow"),
+                     Tile(type='indicator', title='CV', color="yellow",
+                          properties=dict(device='devices/central-heating/heater/set', values=dict(On='fa-fire', Off='fa-power-off'))),
                      Tile(type='switch', title='blue', width=2, color="blue"),
                      Tile(type='switch', title='purple', color="purple"),
                      Tile(type='debugger', title='Debugger',

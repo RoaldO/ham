@@ -3,6 +3,7 @@ console.debug('debugger tile loading');
 
     $.fn.debuggerTile = function(params) {
         var tileNode = this;
+        var properties = JSON.parse($(this).find('div.data-properties').html());
         var output = $(this).find('table tbody');
 
         function clear_output() {
@@ -20,7 +21,6 @@ console.debug('debugger tile loading');
 
         active_data = {};
         function render_clear_output() {
-            console.log(active_data);
             for (var f in active_data) {
                 var v = active_data[f];
                 var tr = $('<tr></tr>')
@@ -36,11 +36,9 @@ console.debug('debugger tile loading');
             render_clear_output();
         };
 
-        console.info('connecting mqtt client');
         function connect_mqtt() {
             params.mqtt_client.connect({onSuccess: function() {
-                console.info('subscribing to topic');
-                params.mqtt_client.subscribe("#");
+                params.mqtt_client.subscribe(properties.subscribe_to);
             }});
         }
 

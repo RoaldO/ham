@@ -7,8 +7,10 @@
     {% for type in types %}
     <link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename='tiles/' + type + '.less') }}">
     {% endfor %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='datatables/datatables.min.css') }}"/>
     <script src="{{ url_for('static', filename='less.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='jquery-3.1.1.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='datatables/datatables.min.js') }}"></script>
     <title>{{ title }}</title>
 </head>
 <body>
@@ -30,5 +32,9 @@
     {% for type in types %}
     <script src="{{ url_for('static', filename='tiles/' + type + '.js') }}" type="text/javascript"></script>
     {% endfor %}
+
+
+
+
 </body>
 </html>
